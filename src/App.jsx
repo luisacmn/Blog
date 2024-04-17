@@ -1,18 +1,23 @@
-import './App.css';
-import {HomePage} from './pages/HomePage';
-import {ArticleListPage} from './pages/ArticleListPage';
-import {AboutPage} from './pages/AboutPage';
-import {NotFoundPage} from './pages/NotFoundPage';
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HomePage } from "./pages/HomePage";
+import { ArticleListPage } from "./pages/ArticleListPage";
+import { AboutPage } from "./pages/AboutPage";
+import { ArticlePage } from "./pages/ArticlePage";
 
 function App() {
   return (
     <div className="App">
-      <HomePage />
-      <ArticleListPage />
-      <AboutPage />
-      <NotFoundPage />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/articles" element={<ArticleListPage />} />
+          <Route path="/articles/:articleId" element={<ArticlePage />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
 
-export default App; 
+export default App;
