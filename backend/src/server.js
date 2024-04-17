@@ -8,6 +8,11 @@ app.get('/hello',(req, res) => {
     res.send('Hello');
 });
 
+app.get('/hello/:name',(req, res) => {
+    const name = req.params.name
+    res.send(`Hello, ${name}`);
+});
+
 app.post('/hello',(req, res) => {
     console.log(req.body)
     res.send(`Hello, ${req.body.name}!`);
