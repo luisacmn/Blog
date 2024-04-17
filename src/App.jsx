@@ -1,14 +1,18 @@
 import './App.css';
+import {HomePage} from './pages/HomePage';
+import {ArticleListPage} from './pages/ArticleListPage';
+import {AboutPage} from './pages/AboutPage';
+import {NotFoundPage} from './pages/NotFoundPage';
 
 function App() {
   return (
     <div className="App">
-      <h1>My Awesome Blog</h1>
-      <div id="page-body">
-        Welcome to my blog!
-      </div>
+      <HomePage />
+      <ArticleListPage />
+      <AboutPage />
+      <NotFoundPage />
     </div>
   );
 }
 
-export default App;
+export default App; 
