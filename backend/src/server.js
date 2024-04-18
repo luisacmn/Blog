@@ -1,26 +1,26 @@
 //express server. Run with Node using 'node src/server.js'
 import express from "express";
-
-let articlesInfo = [  //mocked/fake database
-  {
-    name: "learn-react",
-    upvotes: 0,
-    comments: []
-  },
-  {
-    name: "learn-node",
-    upvotes: 0,
-    comments: []
-  },
-  {
-    name: "mongodb",
-    upvotes: 0,
-    comments: []
-  },
-];
+import { MongoClient } from "mongodb"
 
 const app = express();
 app.use(express.json());
+
+app.get("/api/articles/:name", async (req,res) => {
+  const name = req.params.name;
+
+  const client = new MongoClient('mongodb://127.0.0.1:27017');
+  await client.connect();
+
+  const database = client.db('blog-db');   //use created database
+
+  const article = await database.collection('articles').findOne({name});
+
+  if (article) {
+    res.json(article);
+  } else {
+    res.sendStatus(404)
+  }
+})
 
 app.put("/api/articles/:name/upvote", (req, res) => {
     const name = req.params.name;   //name inputed in the url (request)
