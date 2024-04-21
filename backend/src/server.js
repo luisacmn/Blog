@@ -1,6 +1,6 @@
 //express server. Run with Node using 'node src/server.js'
 import express from "express";
-import {db, connectToDb} from './db.js'
+import {db, connectToDb} from './db.js'   //import the db connection
 
 const app = express();
 app.use(express.json());
