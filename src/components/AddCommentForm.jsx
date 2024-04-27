@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 
-const AddCommentForm = ({articleName, onArticleUpdated}) => {
+export const AddCommentForm = ({articleName, onArticleUpdated}) => {
   const [name, setName] = useState("");
   const [commentText, setCommentText] = useState("");
 
@@ -41,5 +41,3 @@ const AddCommentForm = ({articleName, onArticleUpdated}) => {
     </div>
   );
 };
-
-export default AddCommentForm;

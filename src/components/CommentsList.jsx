@@ -1,4 +1,4 @@
-const CommentsList = ({ comments }) => (
+export const CommentsList = ({ comments }) => (
     <>
     <h3>Comments:</h3>
     {comments.map((comment) => (
@@ -9,5 +9,3 @@ const CommentsList = ({ comments }) => (
     ))}
     </>
 );
-
-export default CommentsList;
