@@ -15,15 +15,14 @@ const ArticlePage = () => {
 
   useEffect(() => {
     const loadArticleInfo = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:8000/api/articles/${articleId}`
-        );
-        const newArticleInfo = response.data;
-        setArticleInfo(newArticleInfo);
-      } catch (error) {
-        console.error("Error:", error);
-      }
+      const token = user && (await user.getIdToken());
+      const headers = token ? { authtoken: token } : {};
+      const response = await axios.get(
+        `http://localhost:8000/api/articles/${articleId}`,
+        { headers }
+      );
+      const newArticleInfo = response.data;
+      setArticleInfo(newArticleInfo);
     };
 
     loadArticleInfo();
