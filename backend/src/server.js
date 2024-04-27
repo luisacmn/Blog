@@ -7,6 +7,7 @@ import cors from 'cors';
 const credentials = JSON.parse(
     fs.readFileSync('./credentials.json')
 );
+
 admin.initializeApp({
     credential: admin.credential.cert(credentials),
 });

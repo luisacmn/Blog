@@ -31,8 +31,10 @@ const ArticlePage = () => {
   const article = articles.find((article) => article.name === articleId);
 
   const addUpvote = async () => {
+    const token = user && (await user.getIdToken());
+    const headers = token ? { authtoken: token } : {};
     const response = await axios.put(
-      `http://localhost:8000/api/articles/${articleId}/upvote`
+      `http://localhost:8000/api/articles/${articleId}/upvote`, null, {headers}
     );
     const updatedArticle = response.data;
     setArticleInfo(updatedArticle);
