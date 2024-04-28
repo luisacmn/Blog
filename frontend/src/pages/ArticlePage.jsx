@@ -19,14 +19,14 @@ const ArticlePage = () => {
       const token = user && await user.getIdToken();
       const headers = token ? { authtoken: token } : {};
       const response = await axios.get(
-        `http://localhost:8000/api/articles/${articleId}`,
+        `/api/articles/${articleId}`,
         { headers }
       );
       const newArticleInfo = response.data;
       setArticleInfo(newArticleInfo);
     }
 
-    if (isLoading) {
+    if (!isLoading) {
       loadArticleInfo();
     }
   }, [isLoading, user]);
@@ -37,7 +37,7 @@ const ArticlePage = () => {
     const token = user && await user.getIdToken();
     const headers = token ? { authtoken: token } : {};
     const response = await axios.put(
-      `http://localhost:8000/api/articles/${articleId}/upvote`, null, { headers }
+      `/api/articles/${articleId}/upvote`, null, { headers }
     );
     const updatedArticle = response.data;
     setArticleInfo(updatedArticle);

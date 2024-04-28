@@ -2,9 +2,9 @@ import fs from 'fs';
 import path from 'path'                            
 import admin from 'firebase-admin' 
 import express from 'express';
+import 'dotenv/config';
 import { db, connectToDb } from './db.js';
 import cors from 'cors';
-import 'dotenv/config';
 
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
@@ -112,6 +112,6 @@ const PORT = process.env.PORT || 8000;
 connectToDb(() => {
     console.log('Successfully connected to database!');
     app.listen(PORT, () => {
-        console.log('Server is listening on port 8000' + PORT);
+        console.log('Server is listening on port ' + PORT);
     });
 })
