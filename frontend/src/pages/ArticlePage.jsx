@@ -9,13 +9,14 @@ import { useUser } from "../hooks/useUser";
 
 const ArticlePage = () => {
   const [articleInfo, setArticleInfo] = useState({ upvotes: 0, comments: [] });
+  const {canUpvote} = articleInfo;
   const { articleId } = useParams();
 
   const { user, isLoading } = useUser();
 
   useEffect(() => {
     const loadArticleInfo = async () => {
-      const token = user && (await user.getIdToken());
+      const token = user && await user.getIdToken();
       const headers = token ? { authtoken: token } : {};
       const response = await axios.get(
         `http://localhost:8000/api/articles/${articleId}`,
@@ -23,18 +24,20 @@ const ArticlePage = () => {
       );
       const newArticleInfo = response.data;
       setArticleInfo(newArticleInfo);
-    };
+    }
 
-    loadArticleInfo();
-  }, [articleId]);
+    if (isLoading) {
+      loadArticleInfo();
+    }
+  }, [isLoading, user]);
 
   const article = articles.find((article) => article.name === articleId);
 
   const addUpvote = async () => {
-    const token = user && (await user.getIdToken());
+    const token = user && await user.getIdToken();
     const headers = token ? { authtoken: token } : {};
     const response = await axios.put(
-      `http://localhost:8000/api/articles/${articleId}/upvote`, null, {headers}
+      `http://localhost:8000/api/articles/${articleId}/upvote`, null, { headers }
     );
     const updatedArticle = response.data;
     setArticleInfo(updatedArticle);
@@ -49,7 +52,7 @@ const ArticlePage = () => {
       <h1>{article.title}</h1>
       <div className="upvotes-section">
         {user ? (
-          <button onClick={addUpvote}>Upvote</button>
+          <button onClick={addUpvote}>{canUpvote ? 'Upvote' : 'Already Upvoted'}</button>
         ) : (
           <button>Log in to upvote</button>
         )}

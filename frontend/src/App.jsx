@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HomePage } from "./pages/HomePage";
-import { ArticleListPage } from "./pages/ArticleListPage";
+import { ArticlesListPage } from "./pages/ArticlesListPage";
 import { AboutPage } from "./pages/AboutPage";
 import ArticlePage from "./pages/ArticlePage";
 import { Navbar } from "./Navbar";
@@ -18,7 +18,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
-            <Route path="/articles" element={<ArticleListPage />} />
+            <Route path="/articles" element={<ArticlesListPage />} />
             <Route path="/articles/:articleId" element={<ArticlePage />} />
             <Route path="/login" element={<LoginPage />} />  
             <Route path="/create-account" element={<CreateAccountPage />} />  
