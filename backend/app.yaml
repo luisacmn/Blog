@@ -1,3 +1,4 @@
-includes:
- - prod-env.yaml
 runtime: nodejs20
+env_variables:
+  MONGO_USERNAME: blog-node-server
+  MONGO_PASSWORD: bQVxRSZCz5jHKf4G
