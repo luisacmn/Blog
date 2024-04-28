@@ -4,6 +4,7 @@ import admin from 'firebase-admin'
 import express from 'express';
 import { db, connectToDb } from './db.js';
 import cors from 'cors';
+import 'dotenv/config';
 
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
